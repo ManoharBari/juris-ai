@@ -43,15 +43,7 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        {/* Logo */}
-        <div className="flex items-center justify-center gap-2.5 mb-8">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#3B9EF5] flex items-center justify-center">
-              <FileText size={18} className="text-white" />
-            </div>
-            <span className="font-semibold text-gray-900 text-xl">Juris AI</span>
-          </Link>
-        </div>
+     
 
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
           <div className="mb-6">
