@@ -2,6 +2,7 @@
 import fs from "fs";
 import path from "path";
 import bcrypt from "bcryptjs";
+import { encrypt, decrypt } from "./encryption";
 
 export interface StoredUser {
   id: string;
@@ -21,12 +22,30 @@ function ensureFile() {
 
 export function getUsers(): StoredUser[] {
   ensureFile();
-  return JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
+  const content = fs.readFileSync(USERS_FILE, "utf-8");
+
+  if (!content || content === "[]") return [];
+
+  // Try to decrypt. If it fails or is valid JSON, it might be legacy
+  const decrypted = decrypt(content);
+  try {
+    return JSON.parse(decrypted);
+  } catch (e) {
+    // If decryption + parse fails, try parsing original (legacy)
+    try {
+      return JSON.parse(content);
+    } catch (innerE) {
+      console.error("Failed to parse users data:", innerE);
+      return [];
+    }
+  }
 }
 
 function saveUsers(users: StoredUser[]) {
   ensureFile();
-  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2), "utf-8");
+  const json = JSON.stringify(users, null, 2);
+  const encrypted = encrypt(json);
+  fs.writeFileSync(USERS_FILE, encrypted, "utf-8");
 }
 
 export function findUserByEmail(email: string): StoredUser | undefined {

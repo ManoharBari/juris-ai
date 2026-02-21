@@ -17,7 +17,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
-import { Language, OrchestratorOutput } from "@/lib/agents/orchestrator";
+import { Language } from "@/lib/agents/orchestrator";
+import { AnalysisResult } from "@/lib/types/analysis";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LANGUAGES: { value: Language; label: string }[] = [
@@ -44,7 +45,7 @@ type Step = "upload" | "analyzing" | "results";
 export default function AnalyzePage() {
   const [step, setStep] = useState<Step>("upload");
   const [file, setFile] = useState<File | null>(null);
-  const [analysis, setAnalysis] = useState<OrchestratorOutput | null>(null);
+  const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
   const [progressLabel, setProgressLabel] = useState("");
@@ -116,8 +117,8 @@ export default function AnalyzePage() {
 
         await new Promise((r) => setTimeout(r, 500));
 
-        // analyzeData.analysis is OrchestratorOutput
-        setAnalysis(analyzeData.analysis as OrchestratorOutput);
+        // analyzeData.analysis is AnalysisResult
+        setAnalysis(analyzeData.analysis as AnalysisResult);
         setStep("results");
         toast.success("Analysis complete!");
       } catch (err) {
@@ -205,11 +206,10 @@ export default function AnalyzePage() {
                     <button
                       key={lang.value}
                       onClick={() => setSelectedLanguage(lang.value)}
-                      className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all border ${
-                        selectedLanguage === lang.value
+                      className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all border ${selectedLanguage === lang.value
                           ? "bg-indigo-50 border-indigo-200 text-indigo-700 shadow-sm"
                           : "bg-white border-gray-100 text-gray-600 hover:border-gray-200"
-                      }`}
+                        }`}
                     >
                       {lang.label}
                     </button>
@@ -220,11 +220,10 @@ export default function AnalyzePage() {
               {/* Drop zone */}
               <div
                 {...getRootProps()}
-                className={`group relative bg-white border-2 border-dashed rounded-[2rem] p-12 transition-all cursor-pointer ${
-                  isDragActive
+                className={`group relative bg-white border-2 border-dashed rounded-[2rem] p-12 transition-all cursor-pointer ${isDragActive
                     ? "border-blue-400 bg-blue-50/30"
                     : "border-gray-200 hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10"
-                }`}
+                  }`}
               >
                 <input {...getInputProps()} />
                 <div className="flex flex-col items-center text-center gap-6">
