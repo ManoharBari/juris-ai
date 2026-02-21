@@ -1,0 +1,556 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100%;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
+
+/* Hide scrollbar while keeping scroll functionality */
+.scrollbar-none {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRINT / REPORT STYLES
+   Hidden on screen, shown only when window.print() is called
+═══════════════════════════════════════════════════════════════ */
+
+/* Hide the print report on screen */
+.print-only {
+  display: none;
+}
+
+@media print {
+
+  /* ── Reset & page setup ──────────────────────────── */
+  @page {
+    size: A4;
+    margin: 18mm 16mm 18mm 16mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide every interactive element */
+  nav,
+  header,
+  button,
+  [role="navigation"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Hide the whole screen UI */
+  body>* {
+    display: none !important;
+  }
+
+  /* Show ONLY the print report */
+  .print-only {
+    display: block !important;
+  }
+
+  /* ── Base typography ─────────────────────────────── */
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: #111827;
+    background: white;
+  }
+
+  /* ── Cover / Header ──────────────────────────────── */
+  .report-header {
+    border-bottom: 2px solid #1d4ed8;
+    padding-bottom: 14pt;
+    margin-bottom: 20pt;
+  }
+
+  .report-brand {
+    display: flex;
+    align-items: center;
+    gap: 6pt;
+    margin-bottom: 10pt;
+  }
+
+  .report-brand-dot {
+    width: 10pt;
+    height: 10pt;
+    border-radius: 50%;
+    background: #3b9ef5;
+    display: inline-block;
+  }
+
+  .report-brand-name {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 13pt;
+    font-weight: 700;
+    color: #1d4ed8;
+    letter-spacing: 0.5pt;
+  }
+
+  .report-title {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 22pt;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 4pt 0;
+    line-height: 1.2;
+  }
+
+  .report-subtitle {
+    font-size: 13pt;
+    color: #374151;
+    margin: 0 0 8pt 0;
+  }
+
+  .report-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 8pt;
+    font-size: 9pt;
+    color: #6b7280;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    flex-wrap: wrap;
+  }
+
+  .report-meta-sep {
+    color: #d1d5db;
+  }
+
+  .report-risk-pill {
+    display: inline-block;
+    padding: 2pt 8pt;
+    border-radius: 20pt;
+    font-weight: 700;
+    font-size: 8pt;
+    letter-spacing: 0.3pt;
+  }
+
+  /* ── Key stats ───────────────────────────────────── */
+  .report-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10pt;
+    margin-bottom: 20pt;
+  }
+
+  .report-stat-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6pt;
+    padding: 10pt 8pt;
+    text-align: center;
+  }
+
+  .report-stat-value {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 22pt;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1;
+    margin-bottom: 3pt;
+  }
+
+  .report-stat-label {
+    font-size: 8pt;
+    color: #6b7280;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.4pt;
+  }
+
+  /* ── Sections ────────────────────────────────────── */
+  .report-section {
+    margin-bottom: 22pt;
+  }
+
+  .report-section-title {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 13pt;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 10pt 0;
+    padding-bottom: 5pt;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .report-page-break {
+    page-break-before: always;
+  }
+
+  /* ── Body text ───────────────────────────────────── */
+  .report-body {
+    font-size: 10pt;
+    color: #374151;
+    margin: 0 0 6pt 0;
+    line-height: 1.65;
+  }
+
+  .report-small {
+    font-size: 8.5pt;
+    color: #6b7280;
+    margin: 3pt 0 0 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* ── Clause cards ────────────────────────────────── */
+  .report-clause {
+    border: 1px solid #e5e7eb;
+    border-radius: 6pt;
+    padding: 10pt 12pt;
+    margin-bottom: 10pt;
+    page-break-inside: avoid;
+  }
+
+  .report-clause-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8pt;
+    margin-bottom: 5pt;
+  }
+
+  .report-clause-num {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    color: #6b7280;
+    background: #f3f4f6;
+    border-radius: 4pt;
+    padding: 2pt 5pt;
+    flex-shrink: 0;
+    margin-top: 1pt;
+  }
+
+  .report-clause-heading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2pt;
+  }
+
+  .report-clause-title {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .report-clause-cat {
+    font-size: 8pt;
+    color: #9ca3af;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .report-clause-badges {
+    display: flex;
+    align-items: center;
+    gap: 5pt;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .report-badge {
+    display: inline-block;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 700;
+    padding: 2pt 6pt;
+    border-radius: 12pt;
+    letter-spacing: 0.2pt;
+  }
+
+  .report-risk-score {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 8pt;
+    color: #6b7280;
+  }
+
+  .report-risk-bar-track {
+    height: 4pt;
+    background: #f3f4f6;
+    border-radius: 4pt;
+    margin: 6pt 0 8pt 0;
+    overflow: hidden;
+  }
+
+  .report-risk-bar-fill {
+    height: 100%;
+    border-radius: 4pt;
+  }
+
+  .report-clause-text {
+    font-size: 9.5pt;
+    color: #4b5563;
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0 0 8pt 0;
+    padding: 6pt 10pt;
+    background: #f9fafb;
+    border-left: 3pt solid #e5e7eb;
+    border-radius: 0 4pt 4pt 0;
+  }
+
+  /* ── Callout boxes ───────────────────────────────── */
+  .report-callout {
+    border-left: 3pt solid;
+    padding: 7pt 10pt;
+    border-radius: 0 4pt 4pt 0;
+    margin-bottom: 6pt;
+    page-break-inside: avoid;
+  }
+
+  .report-callout-label {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    margin: 0 0 3pt 0;
+    text-transform: uppercase;
+    letter-spacing: 0.3pt;
+  }
+
+  .report-callout-body {
+    font-size: 9.5pt;
+    color: #374151;
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ── Unfair terms ────────────────────────────────── */
+  .report-unfair {
+    border: 1px solid #fecaca;
+    background: #fef2f2;
+    border-radius: 6pt;
+    padding: 10pt 12pt;
+    margin-bottom: 8pt;
+    page-break-inside: avoid;
+  }
+
+  .report-unfair-header {
+    display: flex;
+    align-items: center;
+    gap: 8pt;
+    margin-bottom: 5pt;
+    flex-wrap: wrap;
+  }
+
+  .report-unfair-title {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #111827;
+    flex: 1;
+  }
+
+  /* ── Indian law ──────────────────────────────────── */
+  .report-law {
+    border: 1px solid #e5e7eb;
+    border-radius: 6pt;
+    padding: 10pt 12pt;
+    margin-bottom: 8pt;
+    page-break-inside: avoid;
+  }
+
+  .report-law-header {
+    display: flex;
+    align-items: center;
+    gap: 8pt;
+    margin-bottom: 5pt;
+    flex-wrap: wrap;
+  }
+
+  .report-law-name {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #111827;
+    flex: 1;
+  }
+
+  /* ── Recommendations ─────────────────────────────── */
+  .report-recommendations {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .report-rec-item {
+    display: flex;
+    gap: 10pt;
+    align-items: flex-start;
+    padding: 8pt 10pt;
+    border: 1px solid #e5e7eb;
+    border-radius: 6pt;
+    margin-bottom: 6pt;
+    page-break-inside: avoid;
+  }
+
+  .report-rec-num {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #1d4ed8;
+    background: #eff6ff;
+    border-radius: 4pt;
+    padding: 2pt 6pt;
+    flex-shrink: 0;
+  }
+
+  .report-rec-text {
+    font-size: 10pt;
+    color: #374151;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Footer ──────────────────────────────────────── */
+  .report-footer {
+    margin-top: 20pt;
+    padding-top: 10pt;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8pt;
+    color: #9ca3af;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+}

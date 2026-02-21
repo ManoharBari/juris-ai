@@ -1,0 +1,16 @@
+[
+  {
+    "id": "76b31395-bba9-4967-9e9b-0e654ab3c751",
+    "name": "Test User",
+    "email": "test@docutest.com",
+    "passwordHash": "$2b$12$cnGBUPtmJDIVa2rDZoQHcuttBsKpwFop566dg0yfALte2bqZm/IoS",
+    "createdAt": "2026-02-21T11:06:27.333Z"
+  },
+  {
+    "id": "7afaf306-c90e-4a69-9589-93072f392028",
+    "name": "Manohar Kale",
+    "email": "manoharkale5368@gmail.com",
+    "passwordHash": "$2b$12$3eovnk9USc1eYTp4UOmJY.sn8Td3kEGjDnl8nVxzNcMtHJWbCT722",
+    "createdAt": "2026-02-21T16:57:03.509Z"
+  }
+]
