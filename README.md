@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Juris AI ⚖️
+**AI-Powered Legal Contract Analysis for the Indian Framework**
 
-## Getting Started
+Juris AI is a state-of-the-art legal technology platform designed to help users identify risks, extract critical clauses, and verify Indian law compliance in seconds. By leveraging a multi-agent AI orchestrated pipeline, Juris AI simplifies complex legal jargon into understandable insights and vernacular translations.
 
-First, run the development server:
+## 💡The Idea
+Legal documents are often opaque and filled with "silent risks." Juris AI empowers entrepreneurs, individuals, and legal professionals by:
+- **Identifying High-Risk Clauses**: Automated scoring of unfair terms.
+- **Indian Law Context**: Verifying compliance against Indian Acts (e.g., Information Technology Act, Indian Contract Act).
+- **Vernacular Accessibility**: Translating complex legal risks into simple summaries in languages like Hindi, Marathi, Tamil, and more.
+- **Analysis History**: Securely storing and retrieving past document reports.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🛠️ Technology Stack
+- **Frontend**: [Next.js 15](https://nextjs.org/) (App Router), [React 19](https://react.dev/), [Tailwind CSS](https://tailwindcss.com/)
+- **UI/Animations**: [Framer Motion](https://www.framer.com/motion/), [Lucide React](https://lucide.dev/), [Shadcn UI](https://ui.shadcn.com/)
+- **AI Intelligence**: [OpenAI API](https://openai.com/) (Multi-Agent Orchestration: Reader, Scorer, Extractor, Translator)
+- **Database & Storage**: [Supabase](https://supabase.com/) (JSONB Storage for Reports)
+- **Security**: 
+  - **AES-256-GCM**: Military-grade encryption at rest for data.
+  - **TLS 1.3 / HSTS**: Hardened transit security and headers.
+- **Parsing**: `@cedrugs/pdf-parse` (PDF), `mammoth` (DOCX)
+
+## 🏗️ Getting Started
+
+### 1. Prerequisites
+- Node.js 18+
+- Supabase Account
+- OpenAI API Key
+
+### 2. Environment Setup
+Create a `.env.local` file in the root directory:
+```env
+OPENAI_API_KEY=your_openai_key
+AUTH_SECRET=your_auth_secret
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Installation
+```bash
+npm install
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🖥️ Product Demo
+*Video* - 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+*Link* - 
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+Crafted with ❤️ at CodeLite Hackathon for India’s Legal Revolution.

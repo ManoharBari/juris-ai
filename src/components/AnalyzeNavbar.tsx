@@ -19,7 +19,11 @@ export default function AnalyzeNavbar() {
           <span className="font-semibold text-gray-900 text-lg">Juris AI</span>
         </Link>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-gray-500 hidden md:block">Contract Analysis Platform</span>
+          <Link href="/history">
+            <Button variant="ghost" className="rounded-full text-sm h-9 px-5 text-gray-600 hover:text-indigo-600">
+              History
+            </Button>
+          </Link>
           <Link href="/">
             <Button variant="outline" className="rounded-full text-sm h-9 px-5">
               Back to Home

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot, User, Loader2 } from "lucide-react";
+import { BotMessageSquare, X, Send, Bot, User, Loader2 } from "lucide-react";
 
 type Message = {
   role: "user" | "assistant";
@@ -73,7 +73,10 @@ export default function ChatWidget() {
     } catch {
       setMessages([
         ...updated,
-        { role: "assistant", content: "Sorry, something went wrong. Please try again." },
+        {
+          role: "assistant",
+          content: "Sorry, something went wrong. Please try again.",
+        },
       ]);
     } finally {
       setLoading(false);
@@ -92,12 +95,24 @@ export default function ChatWidget() {
       >
         <AnimatePresence mode="wait" initial={false}>
           {open ? (
-            <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.15 }}>
+            <motion.span
+              key="x"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
               <X size={22} />
             </motion.span>
           ) : (
-            <motion.span key="chat" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.15 }}>
-              <MessageCircle size={22} />
+            <motion.span
+              key="chat"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+            >
+              <BotMessageSquare size={22} />
             </motion.span>
           )}
         </AnimatePresence>
@@ -121,17 +136,30 @@ export default function ChatWidget() {
                 <Bot size={16} className="text-white" />
               </div>
               <div>
-                <p className="text-white font-semibold text-sm leading-tight">Juris AI Assistant</p>
-                <p className="text-blue-200 text-xs">Typically replies instantly</p>
+                <p className="text-white font-semibold text-sm leading-tight">
+                  Juris AI Assistant
+                </p>
+                <p className="text-blue-200 text-xs">
+                  Typically replies instantly
+                </p>
               </div>
             </div>
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-gray-50">
               {messages.map((msg, i) => (
-                <div key={i} className={`flex items-end gap-2 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
-                  <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${msg.role === "user" ? "bg-blue-600" : "bg-white border border-gray-200"}`}>
-                    {msg.role === "user" ? <User size={12} className="text-white" /> : <Bot size={12} className="text-blue-600" />}
+                <div
+                  key={i}
+                  className={`flex items-end gap-2 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}
+                >
+                  <div
+                    className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ${msg.role === "user" ? "bg-blue-600" : "bg-white border border-gray-200"}`}
+                  >
+                    {msg.role === "user" ? (
+                      <User size={12} className="text-white" />
+                    ) : (
+                      <Bot size={12} className="text-blue-600" />
+                    )}
                   </div>
                   <div
                     className={`max-w-[78%] px-3 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
@@ -141,9 +169,15 @@ export default function ChatWidget() {
                     }`}
                   >
                     {msg.content}
-                    {loading && i === messages.length - 1 && msg.role === "assistant" && msg.content === "" && (
-                      <Loader2 size={14} className="animate-spin text-gray-400" />
-                    )}
+                    {loading &&
+                      i === messages.length - 1 &&
+                      msg.role === "assistant" &&
+                      msg.content === "" && (
+                        <Loader2
+                          size={14}
+                          className="animate-spin text-gray-400"
+                        />
+                      )}
                   </div>
                 </div>
               ))}
@@ -167,7 +201,10 @@ export default function ChatWidget() {
 
             {/* Input */}
             <form
-              onSubmit={(e) => { e.preventDefault(); sendMessage(input); }}
+              onSubmit={(e) => {
+                e.preventDefault();
+                sendMessage(input);
+              }}
               className="flex items-center gap-2 px-3 py-3 border-t border-gray-100 bg-white"
             >
               <input
@@ -183,7 +220,11 @@ export default function ChatWidget() {
                 disabled={!input.trim() || loading}
                 className="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center disabled:opacity-40 hover:bg-blue-700 transition-colors flex-shrink-0"
               >
-                {loading ? <Loader2 size={15} className="animate-spin" /> : <Send size={15} />}
+                {loading ? (
+                  <Loader2 size={15} className="animate-spin" />
+                ) : (
+                  <Send size={15} />
+                )}
               </button>
             </form>
           </motion.div>

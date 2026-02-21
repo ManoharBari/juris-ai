@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { runLegalAgentPipeline, Language } from "@/lib/agents/orchestrator";
 import { AnalysisResult } from "@/lib/types/analysis";
+import { supabase } from "@/lib/supabase";
 
 export const maxDuration = 120;
 
@@ -96,6 +97,21 @@ export async function POST(req: NextRequest) {
         ...result.riskReport.missingClauses.map(m => `Missing: Consider adding ${m} protections.`)
       ],
     };
+
+    // ── Supabase Storage ───────────────────────────────────────────────
+    try {
+      const { error: dbError } = await supabase
+        .from("reports")
+        .insert({
+          file_name: fileName,
+          analysis_result: mappedAnalysis,
+        });
+
+      if (dbError) console.error("[Analyze] DB store error:", dbError);
+      else console.log("[Analyze] Report stored in Supabase");
+    } catch (dbErr) {
+      console.error("[Analyze] DB exception:", dbErr);
+    }
 
     return NextResponse.json({ success: true, analysis: mappedAnalysis });
   } catch (error: any) {
