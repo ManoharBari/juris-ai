@@ -1,6 +1,6 @@
 // Agent 1: Reads the raw document and returns a structured summary
 
-import OpenAI from "openai";
+const OpenAI = require("openai");
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 

@@ -1,6 +1,6 @@
 // Agent: Simulates negotiation between both parties
 
-import OpenAI from "openai";
+const OpenAI = require("openai");
 import { RiskedClause } from "./orchestrator";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

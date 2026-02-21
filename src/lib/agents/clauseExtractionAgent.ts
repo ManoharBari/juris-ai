@@ -1,6 +1,6 @@
 // Agent 2: Extracts individual clauses from the document
 
-import OpenAI from "openai";
+const OpenAI = require("openai");
 import { ExtractedClause } from "./orchestrator";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

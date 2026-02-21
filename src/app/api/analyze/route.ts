@@ -1,63 +1,59 @@
-// Main API endpoint - runs the full agent pipeline
-
 import { NextRequest, NextResponse } from "next/server";
 import { runLegalAgentPipeline, Language } from "@/lib/agents/orchestrator";
-import pdfParse from "pdf-parse";
-import mammoth from "mammoth";
 
-export const maxDuration = 120; // 2 min timeout for Vercel
+export const maxDuration = 120; // 2 min — enough for full pipeline
 
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const file = formData.get("file") as File;
-    const language = (formData.get("language") as Language) ?? "en";
 
-    if (!file) {
-      return NextResponse.json({ error: "No file provided" }, { status: 400 });
-    }
+    const text = formData.get("text") as string | null;
+    const fileName = formData.get("fileName") as string | null;
+    const language = (formData.get("language") as Language | null) ?? "en";
 
-    // Extract text based on file type
-    const fileBuffer = Buffer.from(await file.arrayBuffer());
-    let fileText = "";
-
-    if (file.type === "application/pdf" || file.name.endsWith(".pdf")) {
-      const pdfData = await pdfParse(fileBuffer);
-      fileText = pdfData.text;
-    } else if (
-      file.type ===
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
-      file.name.endsWith(".docx")
-    ) {
-      const result = await mammoth.extractRawText({ buffer: fileBuffer });
-      fileText = result.value;
-    } else if (file.type === "text/plain" || file.name.endsWith(".txt")) {
-      fileText = fileBuffer.toString("utf-8");
-    } else {
+    // ── Validation ──────────────────────────────────────────────────────
+    if (!text || text.trim().length < 50) {
       return NextResponse.json(
-        { error: "Unsupported file type. Use PDF, DOCX, or TXT." },
+        { success: false, error: "No document text provided." },
         { status: 400 },
       );
     }
 
-    if (!fileText || fileText.trim().length < 100) {
+    if (!fileName) {
       return NextResponse.json(
-        { error: "Could not extract text from file. Is it a scanned image?" },
+        { success: false, error: "fileName is required." },
         { status: 400 },
       );
     }
+
+    const validLanguages: Language[] = ["en", "hi", "mr", "ta", "bn", "te"];
+    const safeLanguage: Language = validLanguages.includes(language)
+      ? language
+      : "en";
+
+    // ── Run pipeline ────────────────────────────────────────────────────
+    console.log(
+      `[Analyze] Starting pipeline — file: "${fileName}", lang: "${safeLanguage}", chars: ${text.length}`,
+    );
 
     const result = await runLegalAgentPipeline({
-      fileText,
-      fileName: file.name,
-      language,
+      fileText: text.trim(),
+      fileName,
+      language: safeLanguage,
     });
 
-    return NextResponse.json(result);
+    console.log(
+      `[Analyze] Pipeline complete — clauses: ${result.riskReport.clauses.length}, score: ${result.riskReport.overallScore}`,
+    );
+
+    return NextResponse.json({ success: true, analysis: result });
   } catch (error: any) {
-    console.error("Agent pipeline error:", error);
+    console.error("[Analyze] Pipeline error:", error);
     return NextResponse.json(
-      { error: error.message ?? "Something went wrong" },
+      {
+        success: false,
+        error: error?.message ?? "Analysis failed. Please try again.",
+      },
       { status: 500 },
     );
   }

@@ -1,6 +1,6 @@
 // Agent 3: Scores each clause for risk, adds redlines and legal citations
 
-import OpenAI from "openai";
+const OpenAI = require("openai");
 import { ExtractedClause, RiskReport, RiskedClause } from "./orchestrator";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
