@@ -30,14 +30,14 @@ export default function HeroSection() {
           className="text-center mb-6"
         >
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-            Upload documents get
+            Legal Clarity in Seconds,
             <br />
-            instant insights
+            Not Hours
           </h1>
           <p className="mt-4 text-lg text-gray-500 max-w-xl mx-auto leading-relaxed">
-            Find key clauses, extract data, and collaborate effortlessly.
-            workflow with enterprise-grade AI that understands context and
-            delivers
+            Extract key clauses, surface hidden risks, and collaborate with
+            confidence, powered by AI that understands legal
+            context.
           </p>
         </motion.div>
 

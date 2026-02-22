@@ -1,11 +1,20 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { auth } from "@/lib/auth";
 
 export async function GET() {
     try {
+        const session = await auth();
+        const userId = session?.user?.id;
+
+        if (!userId) {
+            return NextResponse.json({ success: true, reports: [] });
+        }
+
         const { data, error } = await supabase
             .from("reports")
             .select("*")
+            .eq("user_id", userId)
             .order("created_at", { ascending: false });
 
         if (error) {

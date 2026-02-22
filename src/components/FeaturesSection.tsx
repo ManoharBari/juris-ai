@@ -14,7 +14,7 @@ import {
 const features = [
   {
     icon: ScanText,
-    title: "OCR + Parsing",
+    title: "Document Parsing",
     description: "Extract text and structure from any document format with 99.9% accuracy.",
     color: "from-blue-500/10 to-blue-600/5",
     iconColor: "text-blue-600",
@@ -103,7 +103,7 @@ export default function FeaturesSection() {
             transition={{ delay: 0.2 }}
             className="text-gray-500 text-lg md:max-w-sm mt-4 md:mt-0"
           >
-            From OCR to advanced clause detection, our platform handles the complexity
+            From document to advanced clause detection, our platform handles the complexity
             so you can focus on winning cases.
           </motion.p>
         </div>

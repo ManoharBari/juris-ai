@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="text-white font-semibold">Juris AI</span>
             </div>
             <p className="text-sm leading-relaxed text-gray-500">
-              AI-powered contract intelligence platform built for Indian legal professionals.
+              AI-powered contract intelligence platform built for Indian laws.
             </p>
           </div>
 
@@ -58,7 +58,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <p>© 2026 Juris AI. All rights reserved.</p>
-          <p className="text-gray-600">Made with AI for Indian legal teams</p>
+          <p className="text-gray-600">Made with ❤️ at CodeLite Hackathon for India’s Legal Revolution.</p>
         </div>
       </div>
     </footer>

@@ -2,11 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { runLegalAgentPipeline, Language } from "@/lib/agents/orchestrator";
 import { AnalysisResult } from "@/lib/types/analysis";
 import { supabase } from "@/lib/supabase";
+import { auth } from "@/lib/auth";
 
 export const maxDuration = 120;
 
 export async function POST(req: NextRequest) {
   try {
+    const session = await auth();
+    const userId = session?.user?.id;
+
     const formData = await req.formData();
     const text = formData.get("text") as string | null;
     const fileName = formData.get("fileName") as string | null;
@@ -105,10 +109,11 @@ export async function POST(req: NextRequest) {
         .insert({
           file_name: fileName,
           analysis_result: mappedAnalysis,
+          user_id: userId,
         });
 
       if (dbError) console.error("[Analyze] DB store error:", dbError);
-      else console.log("[Analyze] Report stored in Supabase");
+      else console.log(`[Analyze] Report stored in Supabase for user: ${userId || 'Anonymous'}`);
     } catch (dbErr) {
       console.error("[Analyze] DB exception:", dbErr);
     }
