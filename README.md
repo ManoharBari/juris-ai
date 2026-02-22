@@ -43,7 +43,7 @@ npm run dev
 ```
 
 ## 🖥️ Product Demo
-*Video* - 
+*Video* - https://youtu.be/JaES7nc90s8
 
 *Link* - https://juris-ai-model.vercel.app
 
