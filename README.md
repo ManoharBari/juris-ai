@@ -45,7 +45,7 @@ npm run dev
 ## 🖥️ Product Demo
 *Video* - 
 
-*Link* - 
+*Link* - https://juris-ai-model.vercel.app
 
 ---
 Crafted with ❤️ at CodeLite Hackathon for India’s Legal Revolution.
