@@ -442,13 +442,6 @@ export default function AnalysisDashboard({
                         color: "text-red-500",
                         bg: "bg-red-50",
                       },
-                      {
-                        label: "Law Violations",
-                        value: analysis.keyStats.lawViolationCount,
-                        icon: Scale,
-                        color: "text-purple-500",
-                        bg: "bg-purple-50",
-                      },
                     ].map((stat) => (
                       <div
                         key={stat.label}

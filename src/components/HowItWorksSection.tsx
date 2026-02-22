@@ -36,7 +36,7 @@ const steps = [
 
 export default function HowItWorksSection() {
     return (
-        <section className="py-24 bg-gray-50/50 relative overflow-hidden">
+        <section id="how-it-works" className="py-24 bg-gray-50/50 relative overflow-hidden">
             {/* Decorative background elements */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
             <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />

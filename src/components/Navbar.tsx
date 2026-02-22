@@ -61,7 +61,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          {["Features", "How it Works", "Pricing", "Resources"].map((item) => (
+          {["Features", "How it Works", "Demo"].map((item) => (
             <Link
               key={item}
               href={`#${item.toLowerCase().replace(/ /g, "-")}`}
