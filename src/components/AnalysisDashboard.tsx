@@ -228,12 +228,13 @@ function ClauseCard({ clause }: { clause: AnalysisResult["clauses"][0] }) {
               {/* Indian law reference */}
               {clause.indianLawReference.act && (
                 <div
-                  className={`border rounded-lg p-3 ${clause.indianLawReference.compliance === "NON_COMPLIANT"
+                  className={`border rounded-lg p-3 ${
+                    clause.indianLawReference.compliance === "NON_COMPLIANT"
                       ? "bg-red-50 border-red-100"
                       : clause.indianLawReference.compliance === "COMPLIANT"
                         ? "bg-green-50 border-green-100"
                         : "bg-yellow-50 border-yellow-100"
-                    }`}
+                  }`}
                 >
                   <p className="text-xs font-semibold text-gray-700 mb-1.5 flex items-center gap-1.5">
                     <Scale size={12} />
@@ -254,9 +255,10 @@ function ClauseCard({ clause }: { clause: AnalysisResult["clauses"][0] }) {
                   )}
                   <div className="mt-2">
                     <span
-                      className={`text-xs font-semibold px-2 py-0.5 rounded-full ${COMPLIANCE_COLORS[clause.indianLawReference.compliance]
+                      className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                        COMPLIANCE_COLORS[clause.indianLawReference.compliance]
                           .bg
-                        } ${COMPLIANCE_COLORS[clause.indianLawReference.compliance].text}`}
+                      } ${COMPLIANCE_COLORS[clause.indianLawReference.compliance].text}`}
                     >
                       {clause.indianLawReference.compliance.replace("_", " ")}
                     </span>
@@ -304,32 +306,32 @@ export default function AnalysisDashboard({
     icon: React.ElementType;
     count?: number;
   }[] = [
-      { id: "overview", label: "Overview", icon: Sparkles },
-      {
-        id: "clauses",
-        label: "Clauses",
-        icon: FileText,
-        count: analysis.clauses.length,
-      },
-      {
-        id: "unfair",
-        label: "Unfair Terms",
-        icon: AlertTriangle,
-        count: analysis.unfairTerms.length,
-      },
-      {
-        id: "laws",
-        label: "Indian Laws",
-        icon: Scale,
-        count: analysis.indianLawCompliance.length,
-      },
-      {
-        id: "recommendations",
-        label: "Recommendations",
-        icon: Shield,
-        count: analysis.recommendations.length,
-      },
-    ];
+    { id: "overview", label: "Overview", icon: Sparkles },
+    {
+      id: "clauses",
+      label: "Clauses",
+      icon: FileText,
+      count: analysis.clauses.length,
+    },
+    {
+      id: "unfair",
+      label: "Unfair Terms",
+      icon: AlertTriangle,
+      count: analysis.unfairTerms.length,
+    },
+    {
+      id: "laws",
+      label: "Indian Laws",
+      icon: Scale,
+      count: analysis.indianLawCompliance.length,
+    },
+    {
+      id: "recommendations",
+      label: "Recommendations",
+      icon: Shield,
+      count: analysis.recommendations.length,
+    },
+  ];
 
   return (
     <div className="pt-20 pb-16">
@@ -341,9 +343,6 @@ export default function AnalysisDashboard({
               <FileText size={14} />
               <span className="truncate max-w-xs">{fileName}</span>
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">
-              {analysis.documentType}
-            </h1>
           </div>
           <div className="flex items-center gap-3">
             <Button
@@ -372,19 +371,21 @@ export default function AnalysisDashboard({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${activeTab === tab.id
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
+                  activeTab === tab.id
                     ? "bg-white text-gray-900 shadow-sm"
                     : "text-gray-500 hover:text-gray-700"
-                  }`}
+                }`}
               >
                 <tab.icon size={14} />
                 {tab.label}
                 {tab.count !== undefined && (
                   <span
-                    className={`text-xs px-1.5 py-0.5 rounded-full ${activeTab === tab.id
+                    className={`text-xs px-1.5 py-0.5 rounded-full ${
+                      activeTab === tab.id
                         ? "bg-gray-100 text-gray-600"
                         : "bg-gray-200 text-gray-500"
-                      }`}
+                    }`}
                   >
                     {tab.count}
                   </span>
@@ -471,9 +472,6 @@ export default function AnalysisDashboard({
                       <h3 className="font-semibold text-gray-900">
                         Executive Summary
                       </h3>
-                      <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
-                        Plain English
-                      </span>
                     </div>
                     <p className="text-gray-700 leading-relaxed">
                       {analysis.executiveSummary}
@@ -501,12 +499,13 @@ export default function AnalysisDashboard({
                             className="flex items-start gap-3 bg-red-50 border border-red-100 rounded-xl p-3"
                           >
                             <div
-                              className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${term.severity === "HIGH"
+                              className={`w-2 h-2 rounded-full mt-1.5 flex-shrink-0 ${
+                                term.severity === "HIGH"
                                   ? "bg-red-500"
                                   : term.severity === "MEDIUM"
                                     ? "bg-orange-400"
                                     : "bg-yellow-400"
-                                }`}
+                              }`}
                             />
                             <div>
                               <p className="text-sm font-semibold text-red-800">
@@ -558,12 +557,13 @@ export default function AnalysisDashboard({
                     >
                       <div className="flex items-start gap-4">
                         <div
-                          className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${term.severity === "HIGH"
+                          className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                            term.severity === "HIGH"
                               ? "bg-red-50"
                               : term.severity === "MEDIUM"
                                 ? "bg-orange-50"
                                 : "bg-yellow-50"
-                            }`}
+                          }`}
                         >
                           <AlertTriangle
                             size={20}
@@ -582,12 +582,13 @@ export default function AnalysisDashboard({
                               {term.type}
                             </span>
                             <span
-                              className={`text-xs px-2 py-0.5 rounded-full font-semibold ${term.severity === "HIGH"
+                              className={`text-xs px-2 py-0.5 rounded-full font-semibold ${
+                                term.severity === "HIGH"
                                   ? "bg-red-50 text-red-700"
                                   : term.severity === "MEDIUM"
                                     ? "bg-orange-50 text-orange-700"
                                     : "bg-yellow-50 text-yellow-700"
-                                }`}
+                              }`}
                             >
                               {term.severity} SEVERITY
                             </span>
