@@ -19,7 +19,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
-        const user = findUserByEmail(credentials.email as string);
+        const user = await findUserByEmail(credentials.email as string);
         if (!user) return null;
         const valid = await verifyPassword(credentials.password as string, user.passwordHash);
         if (!valid) return null;
